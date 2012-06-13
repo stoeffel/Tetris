@@ -48,6 +48,15 @@ body {
 	position: absolute;
 	top: 0px;
 	left: 220px;
+}
+#over {
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	display: none;
+	@include rotate(45deg)
+}
+.fancy {
 	font: 40px/48px 'MinstrelPosterWHGRegular', Arial, sans-serif;letter-spacing: 0;
 	@include text-shadow(rgba(0,204,0, 1) -5px 1px 5px, rgba(217,0,126, 1) 5px 5px 5px, rgba(255,204,0, 1) 3px -3px 5px);
 	 -webkit-animation-name: shadow;
@@ -68,6 +77,11 @@ body {
 	width: 100px;
 text-align: right;
 padding:5px;
+}
+#git {
+	position: absolute;
+	bottom: 0px;
+	right:0px;
 }
 
         @-webkit-keyframes shadow{

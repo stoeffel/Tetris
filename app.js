@@ -11,7 +11,10 @@
 	var nextSet = paperNextBlock.set();
 	var move = {};
 	var bricks = [];
-	var score = 0;$('#score').html(score);
+	var score = 0;
+	$('#score').html(score);
+	var lastUpdate = 0;
+
 
 	// walls
 	var walls = {};
@@ -29,14 +32,22 @@
 	});
 
 	var loop = function() {
+			var now = Date.now();
+			var elapsed = (now - lastUpdate);
+			if (elapsed >= 30000) {
+				lastUpdate = now;
+				speed -= 50;
+				clearInterval(gameLoop)
+				gameLoop = setInterval(loop, speed)
+			}
 			if (!currentBlock) { // create a block if there is none
 				if (!nextBlock) nextBlock = new Block();
 				currentBlock = nextBlock;
 				paperNextBlock.clear();
-				if (nextSet){
+				if (nextSet) {
 					nextSet.animate({
-					transform: "t50,150"
-				},500,'elastic')
+						transform: "t50,150"
+					}, 100, 'elastic')
 				}
 				nextSet = paperNextBlock.set();
 				nextBlock = new Block();
@@ -52,13 +63,10 @@
 				});
 				var bb = nextSet.getBBox()
 
-				
-				console.log(nextSet.getBBox())
 				paperNextBlock.add(nextSet);
-				console.log(nextSet.getBBox())
 				nextSet.animate({
-					transform: '...T'+(bb.x*-1+(50-bb.width/2))+','+(bb.y*-1+(50-bb.height/2))
-				},500,'elastic')
+					transform: '...T' + (bb.x * -1 + (50 - bb.width / 2)) + ',' + (bb.y * -1 + (50 - bb.height / 2))
+				}, 100, 'elastic')
 			}
 			move = {
 				x: 0,
@@ -70,6 +78,16 @@
 			move.y += BrickSide;
 			// render
 			if (!currentBlock.draw(move)) {
+				if (currentBlock.getBBox().minY < 0) {
+					clearInterval(gameLoop);
+					$('#game').css({
+						opacity: 0.5
+					})
+					$('#over').css({
+						zIndex: 2000,
+						display:'block'
+					})
+				}
 				bricks = $.merge(bricks, currentBlock.bricks);
 				currentBlock = null;
 			};

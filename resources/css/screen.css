@@ -140,6 +140,23 @@ body {
   position: absolute;
   top: 0px;
   left: 220px;
+}
+
+/* line 52, ../sass/screen.scss */
+#over {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  display: none;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* line 59, ../sass/screen.scss */
+.fancy {
   font: 40px/48px "MinstrelPosterWHGRegular", Arial, sans-serif;
   letter-spacing: 0;
   text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
@@ -149,7 +166,7 @@ body {
   -webkit-animation-direction: linear;
 }
 
-/* line 59, ../sass/screen.scss */
+/* line 68, ../sass/screen.scss */
 #score {
   position: absolute;
   top: 100px;
@@ -171,23 +188,30 @@ body {
   padding: 5px;
 }
 
+/* line 81, ../sass/screen.scss */
+#git {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
 @-webkit-keyframes shadow {
-  /* line 74, ../sass/screen.scss */
+  /* line 88, ../sass/screen.scss */
   0% {
     text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
   }
 
-  /* line 78, ../sass/screen.scss */
+  /* line 92, ../sass/screen.scss */
   50% {
     text-shadow: #ffcc00 -5px 1px 5px, #00cc00 5px 5px 5px, #d9007e 3px -3px 5px;
   }
 
-  /* line 82, ../sass/screen.scss */
+  /* line 96, ../sass/screen.scss */
   80% {
     text-shadow: #d9007e -5px 1px 5px, #ffcc00 5px 5px 5px, #00cc00 3px -3px 5px;
   }
 
-  /* line 85, ../sass/screen.scss */
+  /* line 99, ../sass/screen.scss */
   100% {
     text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
   }

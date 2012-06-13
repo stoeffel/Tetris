@@ -356,33 +356,11 @@ function blockFactory(o) {
 		// Z
 		break;
 	case 7:
-		if (o.angle == 0) {
+		if (o.angle == 270) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
-			bricks.push(new Brick({
-				color: o.color,
-				x: x + BrickSide,
-				y: y
-			}));
-			bricks.push(new Brick({
-				color: o.color,
-				x: x + BrickSide * 2,
-				y: y
-			}));
-			bricks.push(new Brick({
-				color: o.color,
-				x: x + BrickSide,
-				y: y + BrickSide
-			}));
-		}
-		if (o.angle == 90) {
-			bricks.push(new Brick({
-				color: o.color,
-				x: x + BrickSide,
-				y: y - BrickSide
 			}));
 			bricks.push(new Brick({
 				color: o.color,
@@ -404,6 +382,28 @@ function blockFactory(o) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
+				y: y - BrickSide
+			}));
+			bricks.push(new Brick({
+				color: o.color,
+				x: x,
+				y: y
+			}));
+			bricks.push(new Brick({
+				color: o.color,
+				x: x + BrickSide,
+				y: y
+			}));
+			bricks.push(new Brick({
+				color: o.color,
+				x: x,
+				y: y + BrickSide
+			}));
+		}
+		if (o.angle == 90) {
+			bricks.push(new Brick({
+				color: o.color,
+				x: x,
 				y: y + BrickSide
 			}));
 			bricks.push(new Brick({
@@ -422,7 +422,7 @@ function blockFactory(o) {
 				y: y
 			}));
 		}
-		if (o.angle == 270) {
+		if (o.angle == 0) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
