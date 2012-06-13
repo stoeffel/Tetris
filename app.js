@@ -11,37 +11,54 @@
 	var nextSet = paperNextBlock.set();
 	var move = {};
 	var bricks = [];
-	var score = 0;
+	var score = 0;$('#score').html(score);
 
 	// walls
 	var walls = {};
 	walls.left = paper.rect(-BrickSide, 0, BrickSide, height, 1, 1);
 	walls.right = paper.rect(width + BrickSide, 0, BrickSide, height, 1, 1);
 	walls.bottom = paper.rect(0, height, width, BrickSide, 1, 1);
-	walls.left.attr({opacity:0});
-	walls.right.attr({opacity:0});
-	walls.bottom.attr({opacity:0});
+	walls.left.attr({
+		opacity: 0
+	});
+	walls.right.attr({
+		opacity: 0
+	});
+	walls.bottom.attr({
+		opacity: 0
+	});
 
 	var loop = function() {
-			if (!currentBlock){ // create a block if there is none
+			if (!currentBlock) { // create a block if there is none
 				if (!nextBlock) nextBlock = new Block();
 				currentBlock = nextBlock;
 				paperNextBlock.clear();
+				if (nextSet){
+					nextSet.animate({
+					transform: "t50,150"
+				},500,'elastic')
+				}
 				nextSet = paperNextBlock.set();
 				nextBlock = new Block();
-				$.each(nextBlock.bricks, function(i,br){
+				$.each(nextBlock.bricks, function(i, br) {
 					var yy = br.attr('y');
 					var xx = br.attr('x');
 					var fill = br.attr('fill');
-					var clone = paperNextBlock.rect(nextBlock.x - xx+1, nextBlock.y -yy+1, BrickSide-2, BrickSide-2, 2, 2);
+					var clone = paperNextBlock.rect(nextBlock.x - xx + 1, nextBlock.y - yy + 1, BrickSide - 2, BrickSide - 2, 2, 2);
 					clone.attr({
 						fill: fill
 					});
 					nextSet.push(clone)
 				});
-				nextSet.transform('t50,50')
+				var bb = nextSet.getBBox()
+
+				
 				console.log(nextSet.getBBox())
 				paperNextBlock.add(nextSet);
+				console.log(nextSet.getBBox())
+				nextSet.animate({
+					transform: '...T'+(bb.x*-1+(50-bb.width/2))+','+(bb.y*-1+(50-bb.height/2))
+				},500,'elastic')
 			}
 			move = {
 				x: 0,
@@ -75,8 +92,24 @@
 				}
 			});
 			if (linesCount > 0) {
-				score += linesCount * 1.2 * 100;
-				console.log(score);
+				switch (linesCount) {
+				case 1:
+					score += 10;
+					break;
+				case 2:
+					score += 25;
+					break;
+				case 3:
+					score += 40;
+					break;
+				case 4:
+					score += 60;
+					break;
+				default:
+
+					break;
+				};
+				$('#score').html(score);
 
 				clearInterval(gameLoop)
 				var linesToRemove = paper.set()
@@ -85,42 +118,44 @@
 				})
 				linesToRemove.animate({
 					opacity: 0,
-					transform: 's0.5'
+					transform: 's0r360'
 				}, 1000, 'bounce', function() {
 					linesToRemove.remove();
 					bricks = [];
 					$.each(lines, function(i, v) {
 						$.merge(bricks, v);
 					});
-					ys.sort(function(a,b){ return (a-b); })
+					ys.sort(function(a, b) {
+						return (a - b);
+					})
 					var newBricks = [];
 					var oldBricks = [];
-					$.each(ys,function(i,y){
+					$.each(ys, function(i, y) {
 						newBricks = [];
-						$.each(bricks,function(ii,brick){
+						$.each(bricks, function(ii, brick) {
 							var yy = brick.attr('y');
 							var xx = brick.attr('x');
 							var fill = brick.attr('fill');
-							if (yy < y){
+							if (yy < y) {
 								oldBricks.push(brick);
 								newBricks.push(new Brick({
-									x: xx-1,
-									y: yy-1+BrickSide,
+									x: xx - 1,
+									y: yy - 1 + BrickSide,
 									color: fill
 								}));
-							} else{
+							} else {
 								newBricks.push(brick);
 							}
 						});
 						delete bricks;
-						bricks = $.merge([],newBricks);
+						bricks = $.merge([], newBricks);
 						delete newBricks;
 					});
-					$.each(oldBricks, function(i,o){
+					$.each(oldBricks, function(i, o) {
 						o.remove();
 					})
-					
-					gameLoop = setInterval(loop, speed)		
+
+					gameLoop = setInterval(loop, speed)
 				});
 
 			}

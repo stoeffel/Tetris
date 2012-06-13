@@ -1,0 +1,88 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3";
+body {
+	-webkit-user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	@include background-image(linear-gradient(left top, lighten(black, 50%), black));
+}
+#content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+#container {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	padding:0px;
+	height: 400px;
+	width: 500px;
+	margin: -250px -200px;
+}
+
+#game {
+	height:100%;
+	width:200px;
+	border: 1px solid black;
+	@include box-shadow(black 2px 2px 10px inset);
+	@include background-image(linear-gradient(left top, white, darken(white, 50%)));
+}
+#nextBlock {
+	position: absolute;
+	top: 140px;
+  	left: 220px;
+	height: 100px;
+	width: 100px;
+	padding:5px;
+	border: 1px solid black;
+	@include box-shadow(black 2px 2px 10px inset);
+	@include background-image(linear-gradient(left top, white, darken(white, 50%)));
+}
+
+#title {
+	position: absolute;
+	top: 0px;
+	left: 220px;
+	font: 40px/48px 'MinstrelPosterWHGRegular', Arial, sans-serif;letter-spacing: 0;
+	@include text-shadow(rgba(0,204,0, 1) -5px 1px 5px, rgba(217,0,126, 1) 5px 5px 5px, rgba(255,204,0, 1) 3px -3px 5px);
+	 -webkit-animation-name: shadow;
+            -webkit-animation-duration: 20s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+}
+
+#score {
+  position: absolute;
+  top: 100px;
+  left: 220px;
+  font: 18px/27px 'DigitaldreamFatNarrowRegular', Arial, sans-serif;
+  border: 1px solid black;
+	@include box-shadow(black 2px 2px 10px inset);
+	@include background-image(linear-gradient(left top, white, darken(white, 50%)));
+	height: 20px;
+	width: 100px;
+text-align: right;
+padding:5px;
+}
+
+        @-webkit-keyframes shadow{
+            0% {
+               	@include text-shadow(rgba(0,204,0, 1) -5px 1px 5px, rgba(217,0,126, 1) 5px 5px 5px, rgba(255,204,0, 1) 3px -3px 5px);
+            }
+
+            50% {
+            	@include text-shadow(rgba(255,204,0,1) -5px 1px 5px, rgba(0,204,0, 1) 5px 5px 5px, rgba(217,0,126, 1) 3px -3px 5px);
+            }
+            
+            80% {
+             	@include text-shadow(rgba(217,0,126, 1) -5px 1px 5px, rgba(255,204,0,1) 5px 5px 5px, rgba(0,204,0, 1) 3px -3px 5px);
+            }
+            100% {
+             	@include text-shadow(rgba(0,204,0, 1) -5px 1px 5px, rgba(217,0,126, 1) 5px 5px 5px, rgba(255,204,0, 1) 3px -3px 5px);
+            }
+        }
