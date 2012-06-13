@@ -10,8 +10,11 @@ var Block = function() {
 			$.each(this.bricks, function(i,v) {
 				v.remove();
 			});
-		}
+		};
 		this.draw = function(move) {
+			if (!gameLoop){
+				return true;
+			}
 			this.angle += move.angle || 0;
 			if (this.angle >= 360) this.angle = 0;
 			this.x += move.x || 0;
@@ -21,7 +24,7 @@ var Block = function() {
 			if (this.hitsWall()){
 				var bb = this.getBBox();
 				this.undo(move);
-				return !(bb.maxY+BrickSide/2 > height);
+				return bb.maxY+BrickSide/2 <= height;
 			}
 			if (bricks) {
 				if (this.intersects(bricks)) {
@@ -55,7 +58,7 @@ var Block = function() {
 			}
 
 			return inter;
-		}
+		};
 		this.intersectEachBrick = function(b) {
 			var inter = false;
 			$.each(this.bricks, function(i,v) {
@@ -64,15 +67,15 @@ var Block = function() {
 				}
 			});
 			return inter;
-		}
+		};
 		this.hitsWall = function(){
 			var bb = this.getBBox();
 			return bb.minX < -1 || bb.maxX  > width || bb.maxY  > height;
-		}
+		};
 		this.getBBox = function(){
 			var minX = this.x, minY=this.y, maxX = this.x, maxY = this.y;
 			$.each(this.bricks, function(i,v) {
-				var x = v.attr('x'), y = v.attr('y')
+				var x = v.attr('x'), y = v.attr('y');
 				if (x < minX) minX = x;
 				if (x > maxX) maxX = x;
 				if (y < minY) minY = y;
@@ -83,6 +86,6 @@ var Block = function() {
 				minY: minY,
 				maxX:maxX,
 				maxY:maxY
-			}
-		}
-	}
+			};
+		};
+	};

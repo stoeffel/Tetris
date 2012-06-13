@@ -7,7 +7,8 @@
 @import "compass/css3";
 body {
 	-webkit-user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	@include background-image(linear-gradient(left top, lighten(black, 50%), black));
+	background: lighten(black, 50%);
+	@include background-image(linear-gradient( top left, lighten(black, 50%), black));
 }
 #content {
 	position: absolute;
@@ -17,12 +18,11 @@ body {
 }
 #container {
 	position: relative;
-	top: 50%;
 	left: 50%;
 	padding:0px;
 	height: 400px;
 	width: 500px;
-	margin: -250px -200px;
+	margin: 20px -250px;
 }
 
 #game {

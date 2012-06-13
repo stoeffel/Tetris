@@ -67,20 +67,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 8, ../sass/screen.scss */
+/* line 8, ../sass/app.scss */
 body {
   -webkit-user-select: none;
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background: gray;
   background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0%, #808080), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(left top, #808080, #000000);
-  background-image: -moz-linear-gradient(left top, #808080, #000000);
-  background-image: -o-linear-gradient(left top, #808080, #000000);
-  background-image: -ms-linear-gradient(left top, #808080, #000000);
-  background-image: linear-gradient(left top, #808080, #000000);
+  background-image: -webkit-linear-gradient(top left, #808080, #000000);
+  background-image: -moz-linear-gradient(top left, #808080, #000000);
+  background-image: -o-linear-gradient(top left, #808080, #000000);
+  background-image: -ms-linear-gradient(top left, #808080, #000000);
+  background-image: linear-gradient(top left, #808080, #000000);
 }
 
-/* line 12, ../sass/screen.scss */
+/* line 13, ../sass/app.scss */
 #content {
   position: absolute;
   width: 100%;
@@ -88,18 +89,17 @@ body {
   z-index: 100;
 }
 
-/* line 18, ../sass/screen.scss */
+/* line 19, ../sass/app.scss */
 #container {
   position: relative;
-  top: 50%;
   left: 50%;
   padding: 0px;
   height: 400px;
   width: 500px;
-  margin: -250px -200px;
+  margin: 20px -250px;
 }
 
-/* line 28, ../sass/screen.scss */
+/* line 28, ../sass/app.scss */
 #game {
   height: 100%;
   width: 200px;
@@ -115,7 +115,7 @@ body {
   background-image: linear-gradient(left top, #ffffff, #808080);
 }
 
-/* line 35, ../sass/screen.scss */
+/* line 35, ../sass/app.scss */
 #nextBlock {
   position: absolute;
   top: 140px;
@@ -135,14 +135,14 @@ body {
   background-image: linear-gradient(left top, #ffffff, #808080);
 }
 
-/* line 47, ../sass/screen.scss */
+/* line 47, ../sass/app.scss */
 #title {
   position: absolute;
   top: 0px;
   left: 220px;
 }
 
-/* line 52, ../sass/screen.scss */
+/* line 52, ../sass/app.scss */
 #over {
   position: absolute;
   top: 100px;
@@ -155,7 +155,7 @@ body {
   transform: rotate(45deg);
 }
 
-/* line 59, ../sass/screen.scss */
+/* line 59, ../sass/app.scss */
 .fancy {
   font: 40px/48px "MinstrelPosterWHGRegular", Arial, sans-serif;
   letter-spacing: 0;
@@ -166,7 +166,7 @@ body {
   -webkit-animation-direction: linear;
 }
 
-/* line 68, ../sass/screen.scss */
+/* line 68, ../sass/app.scss */
 #score {
   position: absolute;
   top: 100px;
@@ -188,7 +188,7 @@ body {
   padding: 5px;
 }
 
-/* line 81, ../sass/screen.scss */
+/* line 81, ../sass/app.scss */
 #git {
   position: absolute;
   bottom: 0px;
@@ -196,22 +196,22 @@ body {
 }
 
 @-webkit-keyframes shadow {
-  /* line 88, ../sass/screen.scss */
+  /* line 88, ../sass/app.scss */
   0% {
     text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
   }
 
-  /* line 92, ../sass/screen.scss */
+  /* line 92, ../sass/app.scss */
   50% {
     text-shadow: #ffcc00 -5px 1px 5px, #00cc00 5px 5px 5px, #d9007e 3px -3px 5px;
   }
 
-  /* line 96, ../sass/screen.scss */
+  /* line 96, ../sass/app.scss */
   80% {
     text-shadow: #d9007e -5px 1px 5px, #ffcc00 5px 5px 5px, #00cc00 3px -3px 5px;
   }
 
-  /* line 99, ../sass/screen.scss */
+  /* line 99, ../sass/app.scss */
   100% {
     text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
   }

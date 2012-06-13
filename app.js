@@ -83,6 +83,7 @@
 					$('#game').css({
 						opacity: 0.5
 					})
+					$('#over').html('game over');
 					$('#over').css({
 						zIndex: 2000,
 						display:'block'

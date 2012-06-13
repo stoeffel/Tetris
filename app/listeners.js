@@ -7,7 +7,9 @@ var KEYS = {
 	LEFT: 37,
 	UP: 38,
 	RIGHT: 39,
-	DOWN: 40
+	DOWN: 40,
+	P: 80,
+	SPACE:32
 };
 var free = true;
 
@@ -30,6 +32,30 @@ $(window).bind('keydown', function(e) {
 	case KEYS.D:
 	case KEYS.RIGHT:
 		EVENTS.RIGHT = true;
+		break;
+	case KEYS.P:
+	case KEYS.SPACE:
+		if (gameLoop){
+			clearInterval(gameLoop)
+			gameLoop = null;
+			$('#game').css({
+						opacity: 0.5
+					})
+			$('#over').html('take a break');
+					$('#over').css({
+						zIndex: 2000,
+						display:'block'
+					})
+		} else {
+			gameLoop = setInterval(loop,speed);
+			$('#game').css({
+						opacity: 1
+					})
+			$('#over').css({
+						zIndex: 1,
+						display:'none'
+					})
+		}
 		break;
 	default:
 
