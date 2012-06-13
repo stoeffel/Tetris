@@ -1,13 +1,7 @@
-function blockFactory(o) {
+function blockFactory(o,p) {
 	var x = o.x;
 	var y = o.y;
 	var bricks = [];
-	/*
-	.attr({
-			'stroke-linecap': 'round',
-			'stroke-width': 2
-		})
-	 */
 	switch (o.type) {
 	case 1:
 		// 2X2
@@ -15,22 +9,22 @@ function blockFactory(o) {
 			color: o.color,
 			x: x,
 			y: y
-		}));
+		},p));
 		bricks.push(new Brick({
 			color: o.color,
 			x: x + BrickSide,
 			y: y
-		}));
+		},p));
 		bricks.push(new Brick({
 			color: o.color,
 			x: x,
 			y: y + BrickSide
-		}));
+		},p));
 		bricks.push(new Brick({
 			color: o.color,
 			x: x + BrickSide,
 			y: y + BrickSide
-		}));
+		},p));
 		break;
 	case 2:
 		// 4x1
@@ -39,43 +33,43 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 3
-			}));
+			},p));
 		} else {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		break;
 	case 3:
@@ -85,88 +79,88 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 180) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 		if (o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 		if (o.angle == 270) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		break;
 	case 4:
@@ -176,88 +170,88 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 180) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 		if (o.angle == 270) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 
 		break;
@@ -267,44 +261,44 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 270 || o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y - BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 
 		break;
@@ -314,44 +308,44 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		if (o.angle == 270 || o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y - BrickSide
-			}));
+			},p));
 		}
 		// Z
 		break;
@@ -361,88 +355,88 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		if (o.angle == 180) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y - BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		if (o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 0) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y - BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		// W
 		break;

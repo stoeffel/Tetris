@@ -43,30 +43,19 @@
 			if (!currentBlock) { // create a block if there is none
 				if (!nextBlock) nextBlock = new Block();
 				currentBlock = nextBlock;
+				
 				paperNextBlock.clear();
-				if (nextSet) {
-					nextSet.animate({
-						transform: "t50,150"
-					}, 100, 'elastic')
-				}
-				nextSet = paperNextBlock.set();
 				nextBlock = new Block();
-				$.each(nextBlock.bricks, function(i, br) {
-					var yy = br.attr('y');
-					var xx = br.attr('x');
-					var fill = br.attr('fill');
-					var clone = paperNextBlock.rect(nextBlock.x - xx + 1, nextBlock.y - yy + 1, BrickSide - 2, BrickSide - 2, 2, 2);
-					clone.attr({
-						fill: fill
-					});
-					nextSet.push(clone)
-				});
-				var bb = nextSet.getBBox()
 
-				paperNextBlock.add(nextSet);
-				nextSet.animate({
-					transform: '...T' + (bb.x * -1 + (50 - bb.width / 2)) + ',' + (bb.y * -1 + (50 - bb.height / 2))
-				}, 100, 'elastic')
+				nextSet = new Block(paperNextBlock, {
+					color: nextBlock.color,
+					x: BrickSide*2,
+					y: BrickSide*2,
+					angle: nextBlock.angle,
+					type: nextBlock.type
+
+				});
+				
 			}
 			move = {
 				x: 0,

@@ -1,11 +1,12 @@
-var Block = function() {
-		this.color = randomColor();
-		this.y = -80;
-		this.x = width / 2;
-		this.angle = 90 * random(0, 3);
-		this.type = random(1, 7);
+var Block = function(p,o) {
+	o = o || {};
+		this.color = o.color || randomColor();
+		this.y = o.y || -80;
+		this.x = o.x || width / 2;
+		this.angle = o.angle || 90 * random(0, 3);
+		this.type = o.type || random(1, 7);
 		this.bricks = [];
-		this.bricks = blockFactory(this);
+		this.bricks = blockFactory(this,p);
 		this.remove = function(){
 			$.each(this.bricks, function(i,v) {
 				v.remove();
