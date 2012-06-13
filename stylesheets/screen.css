@@ -147,4 +147,25 @@ body {
   font: 40px/48px "MinstrelPosterWHGRegular", Arial, sans-serif;
   letter-spacing: 0;
   text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
+  -webkit-animation-name: shadow;
+  -webkit-animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: linear;
+}
+
+@-webkit-keyframes shadow {
+  /* line 60, ../sass/screen.scss */
+  0% {
+    text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
+  }
+
+  /* line 64, ../sass/screen.scss */
+  50% {
+    text-shadow: #ffcc00 -5px 1px 5px, #00cc00 5px 5px 5px, #d9007e 3px -3px 5px;
+  }
+
+  /* line 68, ../sass/screen.scss */
+  100% {
+    text-shadow: #d9007e -5px 1px 5px, #ffcc00 5px 5px 5px, #00cc00 3px -3px 5px;
+  }
 }

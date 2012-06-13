@@ -50,5 +50,22 @@ body {
 	left: 220px;
 	font: 40px/48px 'MinstrelPosterWHGRegular', Arial, sans-serif;letter-spacing: 0;
 	@include text-shadow(rgba(0,204,0, 1) -5px 1px 5px, rgba(217,0,126, 1) 5px 5px 5px, rgba(255,204,0, 1) 3px -3px 5px);
+	 -webkit-animation-name: shadow;
+            -webkit-animation-duration: 20s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
 }
 
+        @-webkit-keyframes shadow{
+            0% {
+               	@include text-shadow(rgba(0,204,0, 1) -5px 1px 5px, rgba(217,0,126, 1) 5px 5px 5px, rgba(255,204,0, 1) 3px -3px 5px);
+            }
+
+            50% {
+            	@include text-shadow(rgba(255,204,0,1) -5px 1px 5px, rgba(0,204,0, 1) 5px 5px 5px, rgba(217,0,126, 1) 3px -3px 5px);
+            }
+            
+            100% {
+             	@include text-shadow(rgba(217,0,126, 1) -5px 1px 5px, rgba(255,204,0,1) 5px 5px 5px, rgba(0,204,0, 1) 3px -3px 5px);
+            }
+        }
