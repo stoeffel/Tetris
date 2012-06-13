@@ -99,11 +99,16 @@ body {
   margin: 20px -250px;
 }
 
-/* line 28, ../sass/app.scss */
+/* line 35, ../sass/app.scss */
 #game {
   height: 100%;
   width: 200px;
   border: 1px solid black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
   -webkit-box-shadow: black 2px 2px 10px inset;
   -moz-box-shadow: black 2px 2px 10px inset;
   box-shadow: black 2px 2px 10px inset;
@@ -115,7 +120,7 @@ body {
   background-image: linear-gradient(left top, #ffffff, #808080);
 }
 
-/* line 35, ../sass/app.scss */
+/* line 40, ../sass/app.scss */
 #nextBlock {
   position: absolute;
   top: 140px;
@@ -124,6 +129,11 @@ body {
   width: 100px;
   padding: 5px;
   border: 1px solid black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
   -webkit-box-shadow: black 2px 2px 10px inset;
   -moz-box-shadow: black 2px 2px 10px inset;
   box-shadow: black 2px 2px 10px inset;
@@ -133,16 +143,29 @@ body {
   background-image: -o-linear-gradient(left top, #ffffff, #808080);
   background-image: -ms-linear-gradient(left top, #ffffff, #808080);
   background-image: linear-gradient(left top, #ffffff, #808080);
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  border-radius: 100px;
+}
+/* line 49, ../sass/app.scss */
+#nextBlock svg {
+  -webkit-transform: scale(0.8, 0.8);
+  -moz-transform: scale(0.8, 0.8);
+  -ms-transform: scale(0.8, 0.8);
+  -o-transform: scale(0.8, 0.8);
+  transform: scale(0.8, 0.8);
 }
 
-/* line 47, ../sass/app.scss */
+/* line 54, ../sass/app.scss */
 #title {
   position: absolute;
   top: 0px;
   left: 220px;
 }
 
-/* line 52, ../sass/app.scss */
+/* line 59, ../sass/app.scss */
 #over {
   position: absolute;
   top: 100px;
@@ -155,7 +178,7 @@ body {
   transform: rotate(45deg);
 }
 
-/* line 59, ../sass/app.scss */
+/* line 66, ../sass/app.scss */
 .fancy {
   font: 40px/48px "MinstrelPosterWHGRegular", Arial, sans-serif;
   letter-spacing: 0;
@@ -166,13 +189,19 @@ body {
   -webkit-animation-direction: linear;
 }
 
-/* line 68, ../sass/app.scss */
+/* line 75, ../sass/app.scss */
 #score {
+  text-shadow: #00cc00 -2px 2px 5px, #d9007e 2px 2px 5px, #ffcc00 2px -2px 5px;
   position: absolute;
-  top: 100px;
+  top: 90px;
   left: 220px;
   font: 18px/27px "DigitaldreamFatNarrowRegular", Arial, sans-serif;
   border: 1px solid black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
   -webkit-box-shadow: black 2px 2px 10px inset;
   -moz-box-shadow: black 2px 2px 10px inset;
   box-shadow: black 2px 2px 10px inset;
@@ -185,10 +214,10 @@ body {
   height: 20px;
   width: 100px;
   text-align: right;
-  padding: 5px;
+  padding: 7px;
 }
 
-/* line 81, ../sass/app.scss */
+/* line 87, ../sass/app.scss */
 #git {
   position: absolute;
   bottom: 0px;
@@ -196,22 +225,22 @@ body {
 }
 
 @-webkit-keyframes shadow {
-  /* line 88, ../sass/app.scss */
+  /* line 94, ../sass/app.scss */
   0% {
     text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
   }
 
-  /* line 92, ../sass/app.scss */
+  /* line 98, ../sass/app.scss */
   50% {
     text-shadow: #ffcc00 -5px 1px 5px, #00cc00 5px 5px 5px, #d9007e 3px -3px 5px;
   }
 
-  /* line 96, ../sass/app.scss */
+  /* line 102, ../sass/app.scss */
   80% {
     text-shadow: #d9007e -5px 1px 5px, #ffcc00 5px 5px 5px, #00cc00 3px -3px 5px;
   }
 
-  /* line 99, ../sass/app.scss */
+  /* line 105, ../sass/app.scss */
   100% {
     text-shadow: #00cc00 -5px 1px 5px, #d9007e 5px 5px 5px, #ffcc00 3px -3px 5px;
   }

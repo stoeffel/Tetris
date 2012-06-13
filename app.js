@@ -36,7 +36,7 @@
 			var elapsed = (now - lastUpdate);
 			if (elapsed >= 30000) {
 				lastUpdate = now;
-				speed -= 50;
+				speed -= 20;
 				clearInterval(gameLoop)
 				gameLoop = setInterval(loop, speed)
 			}
@@ -49,8 +49,8 @@
 
 				nextSet = new Block(paperNextBlock, {
 					color: nextBlock.color,
-					x: BrickSide*2,
-					y: BrickSide*2,
+					x: BrickSide,
+					y: BrickSide,
 					angle: nextBlock.angle,
 					type: nextBlock.type
 
@@ -118,6 +118,7 @@
 					break;
 				};
 				$('#score').html(score);
+
 
 				clearInterval(gameLoop)
 				var linesToRemove = paper.set()
