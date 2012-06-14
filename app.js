@@ -5,7 +5,7 @@
 	var heightNext = $('#nextBlock').height();
 	var paperNextBlock = Raphael(document.getElementById('nextBlock'), widthNext, heightNext);
 	var BrickSide = 20;
-	var speed = 700;
+	var speed = 500;
 	var currentBlock = null;
 	var nextBlock = null;
 	var nextSet = paperNextBlock.set();
@@ -14,6 +14,7 @@
 	var score = 0;
 	$('#score').html(score);
 	var lastUpdate = 0;
+	var lastUpdateScore=0;
 
 
 	// walls
@@ -34,14 +35,13 @@
 	var loop = function() {
 			var now = Date.now();
 			var elapsed = (now - lastUpdate);
-			if (elapsed >= 30000) {
+			if (elapsed >= 20000) {
 				lastUpdate = now;
 				speed -= 20;
 				clearInterval(gameLoop)
 				gameLoop = setInterval(loop, speed)
 			}
 			if (!currentBlock) { // create a block if there is none
-				console.time('newBlock')
 				if (!nextBlock) nextBlock = new Block();
 				currentBlock = nextBlock;
 				
@@ -56,7 +56,6 @@
 					type: nextBlock.type
 
 				});
-				console.timeEnd('newBlock')
 			}
 			move = {
 				x: 0,
@@ -86,212 +85,5 @@
 			
 		}
 	var gameLoop = setInterval(loop, speed);
-	/*
 	
-
-			var now = Date.now();
-			var elapsed = (now - lastUpdate);
-			var elapsed2 = (now - last);
-			if (elapsed >= 60000) {
-				lastUpdate = now;
-				speed -= 50;
-			}
-			if (elapsed2 >= speed) {
-				last = now;
-				block.y += BrickSide;
-				block.draw();
-			}
-
-
-			var collision = false;
-			if (blocks.length > 0) $.each(blocks, function(i, b) {
-				$.each(b.bricks, function(i, br) {
-					$.each(block.bricks, function(i, me) {
-						var bb1 = br.getBBox();
-						var bb2 = me.getBBox();
-						//if (Raphael.isBBoxIntersect(me.getBBox(true), br.getBBox(true))) {
-						if (br.attr('opacity') != 0) if (bb1.x == bb2.x && bb1.y == bb2.y2) {
-							collision = true;
-						}
-					})
-				})
-			});
-			if (block.bricks.getBBox(false).y2 >= height - 10) collision = true;
-			if (!collision) {
-				handler();
-				block.draw();
-				$.each(blocks, function(i, b) {
-					$.each(b.bricks, function(i, br) {
-						$.each(block.bricks, function(i, me) {
-							var bb1 = br.getBBox();
-							var bb2 = me.getBBox();
-							if (br.attr('opacity') != 0) {
-								if (bb1.x == bb2.x && bb1.y == bb2.y2) {
-									collision = true;
-								}
-								if (bb2.x <= 0 - BrickSide + 1 || bb2.x2 >= width + BrickSide - 1) {
-									collision = true;
-								}
-							}
-						})
-					})
-				});
-				if (blocks.length == 0) {
-					$.each(block.bricks, function(i, me) {
-						var bb2 = me.getBBox();
-						if (bb2.x <= 0 - BrickSide + 1 || bb2.x2 >= width + BrickSide - 1) {
-							collision = true;
-						}
-					})
-				}
-				if (block.bricks.getBBox(false).y2 >= height - 10) collision = true;
-				if (collision) {
-					if (EVENTS.ROTATE) {
-						block.angle -= 90;
-					}
-					if (EVENTS.LEFT) {
-						block.x += BrickSide;
-					}
-					if (EVENTS.RIGHT) {
-						block.x -= BrickSide;
-					}
-					if (EVENTS.DOWN) {
-						block.y -= BrickSide;
-					}
-					block.draw();
-				}
-				EVENTS = {};
-			} else {
-				blocks.push(block);
-				// check for full lines
-				for (var y = 10; y < height; y = y + 20) {
-					var line = true;
-					for (var x = 10; x < width; x = x + 20) {
-						var yep = false;
-						$.each(blocks, function(i, b) {
-							$.each(b.bricks, function(i, br) {
-								var bb = br.getBBox();
-								if (br.attr('opacity') != 0) if (bb.x < x && bb.x2 > x && bb.y < y && bb.y2 > y) {
-									yep = true;
-								}
-							});
-						});
-						if (!yep) {
-							line = false;
-							break;
-						}
-					}
-					if (line) {
-						for (var x = 10; x < width; x = x + 20) {
-							var yep = false;
-							$.each(blocks, function(i, b) {
-								$.each(b.bricks, function(i, br) {
-									var bb = br.getBBox();
-									if (bb.x < x && bb.x2 > x && bb.y < y && bb.y2 > y) {
-										br.attr({
-											opacity: 0
-										});
-									}
-								});
-							});
-						}
-						for (var yy = y - 20; yy > 0; yy = yy - 20) {
-							for (var x = 10; x < width; x = x + 20) {
-								$.each(blocks, function(i, b) {
-									$.each(b.bricks, function(i, br) {
-										var bb = br.getBBox();
-										if (bb.x < x && bb.x2 > x && bb.y < yy && bb.y2 > yy) {
-											br.transform("...T0," + BrickSide);
-										}
-									});
-								});
-							}
-						}
-					}
-				}
-				$.each(blocks, function(i, b) {
-					$.each(b.bricks, function(i, br) {
-						var bb = br.getBBox();
-						if (br.attr('opacity') != 0) if (bb.y < 0) {
-							clearInterval(gameLoop);
-							alert('game over!');
-						}
-					});
-				});
-				block = new Block();
-			}
-
-		}
-
-	var KEYS = {
-		W: 87,
-		A: 65,
-		S: 83,
-		D: 68,
-		LEFT: 37,
-		UP: 38,
-		RIGHT: 39,
-		DOWN: 40
-	};
-	$(window).bind('keydown', function(e) {
-		switch (e.which) {
-		case KEYS.W:
-		case KEYS.UP:
-			EVENTS.ROTATE = true
-			break;
-		case KEYS.A:
-		case KEYS.LEFT:
-			EVENTS.LEFT = true;
-			break;
-		case KEYS.S:
-		case KEYS.DOWN:
-			EVENTS.DOWN = true;
-			break;
-		case KEYS.D:
-		case KEYS.RIGHT:
-			EVENTS.RIGHT = true;
-			break;
-		default:
-
-			break;
-		};
-
-	});
-	$('#content').hammer({
-		prevent_default: true,
-		drag_vertical: false,
-		swipe_time: 800,
-		// ms
-		swipe_min_distance: 5 // pixels
-	}).bind("tap swipe", function(ev) {
-		if (ev.type == 'swipe') {
-			EVENTS.LEFT = ev.direction == 'left';
-			EVENTS.RIGHT = ev.direction == 'right';
-			EVENTS.ROTATE = ev.direction == 'up';
-			EVENTS.DOWN = ev.direction == 'down';
-		}
-		if (ev.type == 'tap') {
-			EVENTS.ROTATE = true
-		}
-
-	});
-
-	function handler() {
-
-		if (EVENTS.ROTATE) {
-			block.angle += 90;
-		}
-		if (EVENTS.LEFT) {
-			block.x -= BrickSide;
-		}
-		if (EVENTS.DOWN) {
-			block.y += BrickSide;
-		}
-		if (EVENTS.RIGHT) {
-			block.x += BrickSide;
-		}
-	}
-	
-
-	/**/
 	
