@@ -13,7 +13,6 @@
 	var bricks = [];
 	var score = 0;
 	$('#score').html(score);
-	var lastUpdate = 0;
 	var lastUpdateScore=0;
 
 
@@ -33,14 +32,6 @@
 	});
 
 	var loop = function() {
-			var now = Date.now();
-			var elapsed = (now - lastUpdate);
-			if (elapsed >= 20000) {
-				lastUpdate = now;
-				speed -= 20;
-				clearInterval(gameLoop)
-				gameLoop = setInterval(loop, speed)
-			}
 			if (!currentBlock) { // create a block if there is none
 				if (!nextBlock) nextBlock = new Block();
 				currentBlock = nextBlock;

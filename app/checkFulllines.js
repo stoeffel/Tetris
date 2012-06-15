@@ -35,9 +35,9 @@ function checkFullines() {
 			break;
 		};
 		$('#score').html(score);
-		if (score - lastUpdateScore >= 100) {
+		if (score - lastUpdateScore >= 20) {
 			lastUpdateScore = score;
-			speed -= 40;
+			speed -= 30;
 			clearInterval(gameLoop)
 			gameLoop = setInterval(loop, speed)
 		}
