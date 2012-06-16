@@ -34,6 +34,5 @@ window.addEventListener('load', function init() {
     });
 
   } catch (e) {
-    alert('Web Audio API is not supported in this browser');
   }
 }, false);
