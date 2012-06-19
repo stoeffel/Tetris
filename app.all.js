@@ -1,11 +1,12 @@
-var Block = function() {
-		this.color = randomColor();
-		this.y = -80;
-		this.x = width / 2;
-		this.angle = 90 * random(0, 3);
-		this.type = random(1, 7);
+var Block = function(p,o) {
+	o = o || {};
+		this.color = o.color || randomColor();
+		this.y = o.y || -80;
+		this.x = o.x || width / 2;
+		this.angle = o.angle || 90 * random(0, 3);
+		this.type = o.type || random(1, 7);
 		this.bricks = [];
-		this.bricks = blockFactory(this);
+		this.bricks = blockFactory(this,p);
 		this.remove = function(){
 			$.each(this.bricks, function(i,v) {
 				v.remove();
@@ -89,16 +90,10 @@ var Block = function() {
 			};
 		};
 	};
-function blockFactory(o) {
+function blockFactory(o,p) {
 	var x = o.x;
 	var y = o.y;
 	var bricks = [];
-	/*
-	.attr({
-			'stroke-linecap': 'round',
-			'stroke-width': 2
-		})
-	 */
 	switch (o.type) {
 	case 1:
 		// 2X2
@@ -106,22 +101,22 @@ function blockFactory(o) {
 			color: o.color,
 			x: x,
 			y: y
-		}));
+		},p));
 		bricks.push(new Brick({
 			color: o.color,
 			x: x + BrickSide,
 			y: y
-		}));
+		},p));
 		bricks.push(new Brick({
 			color: o.color,
 			x: x,
 			y: y + BrickSide
-		}));
+		},p));
 		bricks.push(new Brick({
 			color: o.color,
 			x: x + BrickSide,
 			y: y + BrickSide
-		}));
+		},p));
 		break;
 	case 2:
 		// 4x1
@@ -130,43 +125,43 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 3
-			}));
+			},p));
 		} else {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		break;
 	case 3:
@@ -176,88 +171,88 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 180) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 		if (o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 		if (o.angle == 270) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		break;
 	case 4:
@@ -267,88 +262,88 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 180) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide * 2
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 		if (o.angle == 270) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x - BrickSide,
 				y: y + BrickSide * 2
-			}));
+			},p));
 		}
 
 		break;
@@ -358,44 +353,44 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 270 || o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y - BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 
 		break;
@@ -405,44 +400,44 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		if (o.angle == 270 || o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y - BrickSide
-			}));
+			},p));
 		}
 		// Z
 		break;
@@ -452,88 +447,88 @@ function blockFactory(o) {
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		if (o.angle == 180) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y - BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		if (o.angle == 90) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide * 2,
 				y: y + BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 		}
 		if (o.angle == 0) {
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y - BrickSide
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x,
 				y: y
-			}));
+			},p));
 			bricks.push(new Brick({
 				color: o.color,
 				x: x + BrickSide,
 				y: y + BrickSide
-			}));
+			},p));
 		}
 		// W
 		break;
@@ -543,16 +538,110 @@ function blockFactory(o) {
 	};
 	return bricks;
 }
-var Brick = function(o) {
-
+var Brick = function(o,p) {
+		p = p || paper
 		this.y = o.y;
 		this.x = o.x;
-		this.ele = paper.rect(this.x+1, this.y+1, BrickSide-2, BrickSide-2, 2, 2);
+		this.ele = p.rect(this.x+1, this.y+1, BrickSide-2, BrickSide-2, 2, 2);
 		this.ele.attr({
 			fill: o.color
 		});
 		return this.ele;
 	}
+function checkFullines() {
+	// check for full lines
+	var linesCount = 0,
+		lines = {},
+		fulllines = [],
+		ys = [];
+	$.each(bricks, function(i, v) {
+		var x = v.attr('x'),
+			y = v.attr('y');
+		if (!lines[y]) lines[y] = [];
+		lines[y].push(v);
+		if (lines[y].length == 10) {
+			linesCount++;
+			fulllines = $.merge(fulllines, lines[y]);
+			ys.push(y);
+			delete lines[y];
+		}
+	});
+	if (linesCount > 0) {
+		switch (linesCount) {
+		case 1:
+			score += 10;
+			break;
+		case 2:
+			score += 25;
+			break;
+		case 3:
+			score += 40;
+			break;
+		case 4:
+			score += 60;
+			break;
+		default:
+
+			break;
+		};
+		$('#score').html(score);
+		if (score - lastUpdateScore >= 20) {
+			lastUpdateScore = score;
+			speed -= 30;
+			clearInterval(gameLoop)
+			gameLoop = setInterval(loop, speed)
+		}
+
+
+		clearInterval(gameLoop)
+		var linesToRemove = paper.set()
+		$.each(fulllines, function(i, v) {
+			linesToRemove.push(v);
+		})
+		linesToRemove.animate({
+			opacity: 0,
+			transform: 's0r360'
+		}, 1000, 'bounce', function() {
+			linesToRemove.remove();
+			bricks = [];
+			$.each(lines, function(i, v) {
+				$.merge(bricks, v);
+			});
+			ys.sort(function(a, b) {
+				return (a - b);
+			})
+			var newBricks = [];
+			var oldBricks = [];
+			$.each(ys, function(i, y) {
+				newBricks = [];
+				$.each(bricks, function(ii, brick) {
+					var yy = brick.attr('y');
+					var xx = brick.attr('x');
+					var fill = brick.attr('fill');
+					if (yy < y) {
+						oldBricks.push(brick);
+						newBricks.push(new Brick({
+							x: xx - 1,
+							y: yy - 1 + BrickSide,
+							color: fill
+						}));
+					} else {
+						newBricks.push(brick);
+					}
+				});
+				delete bricks;
+				bricks = $.merge([], newBricks);
+				delete newBricks;
+			});
+			$.each(oldBricks, function(i, o) {
+				o.remove();
+			})
+
+			gameLoop = setInterval(loop, speed)
+		});
+
+	}
+}
 var EVENTS = {};
 var KEYS = {
 	W: 87,
@@ -664,13 +753,54 @@ var handle= function() {
 	EVENTS = {};
 	free = true;
 }
+var sounds = {};
+
+function loadSound(url, name, cb) {
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+  request.responseType = 'arraybuffer';
+
+  // Decode asynchronously
+  request.onload = function() {
+    context.decodeAudioData(request.response, function(buffer) {
+      sounds[name] = buffer;
+      if (cb) {
+        cb();
+      }
+    }, function() {});
+  }
+  request.send();
+}
+
+function playSound(buffer,loop) {
+  var source = context.createBufferSource(); // creates a sound source
+  source.buffer = buffer; // tell the source which sound to play
+  source.loop = loop;
+  source.connect(context.destination); // connect the source to the context's destination (the speakers)
+  source.noteOn(0); // play the source now
+}
+
+var context;
+window.addEventListener('load', function init() {
+  try {
+    context = new webkitAudioContext();
+    loadSound('resources/sounds/Tetris-Theme-Original.mp3', 'track', function() {
+      playSound(sounds.track,true)
+    });
+
+  } catch (e) {
+    alert('Web Audio API is not supported in this browser');
+  }
+}, false);
+var colors= ['0,204,0', '217,0,126', '255,204,0'];
 var randomColor = function() {
-		return '#' + (function co(lor) {
+		return "rgb("+colors[random(0,2)]+")";
+		/*return '#' + (function co(lor) {
 			return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
-		})('');
+		})('');*/
 	}
-var random = function(i, j) {
-		return Math.floor((Math.random() * j) + i)
+var random = function(from,to) {
+		return Math.floor(Math.random()*(to-from+1)+from);
 	}
 	var width = $('#game').width();
 	var height = $('#game').height();
@@ -679,7 +809,7 @@ var random = function(i, j) {
 	var heightNext = $('#nextBlock').height();
 	var paperNextBlock = Raphael(document.getElementById('nextBlock'), widthNext, heightNext);
 	var BrickSide = 20;
-	var speed = 700;
+	var speed = 500;
 	var currentBlock = null;
 	var nextBlock = null;
 	var nextSet = paperNextBlock.set();
@@ -687,7 +817,7 @@ var random = function(i, j) {
 	var bricks = [];
 	var score = 0;
 	$('#score').html(score);
-	var lastUpdate = 0;
+	var lastUpdateScore=0;
 
 
 	// walls
@@ -706,41 +836,21 @@ var random = function(i, j) {
 	});
 
 	var loop = function() {
-			var now = Date.now();
-			var elapsed = (now - lastUpdate);
-			if (elapsed >= 30000) {
-				lastUpdate = now;
-				speed -= 50;
-				clearInterval(gameLoop)
-				gameLoop = setInterval(loop, speed)
-			}
 			if (!currentBlock) { // create a block if there is none
 				if (!nextBlock) nextBlock = new Block();
 				currentBlock = nextBlock;
+				
 				paperNextBlock.clear();
-				if (nextSet) {
-					nextSet.animate({
-						transform: "t50,150"
-					}, 100, 'elastic')
-				}
-				nextSet = paperNextBlock.set();
 				nextBlock = new Block();
-				$.each(nextBlock.bricks, function(i, br) {
-					var yy = br.attr('y');
-					var xx = br.attr('x');
-					var fill = br.attr('fill');
-					var clone = paperNextBlock.rect(nextBlock.x - xx + 1, nextBlock.y - yy + 1, BrickSide - 2, BrickSide - 2, 2, 2);
-					clone.attr({
-						fill: fill
-					});
-					nextSet.push(clone)
-				});
-				var bb = nextSet.getBBox()
 
-				paperNextBlock.add(nextSet);
-				nextSet.animate({
-					transform: '...T' + (bb.x * -1 + (50 - bb.width / 2)) + ',' + (bb.y * -1 + (50 - bb.height / 2))
-				}, 100, 'elastic')
+				nextSet = new Block(paperNextBlock, {
+					color: nextBlock.color,
+					x: BrickSide,
+					y: BrickSide,
+					angle: nextBlock.angle,
+					type: nextBlock.type
+
+				});
 			}
 			move = {
 				x: 0,
@@ -765,301 +875,10 @@ var random = function(i, j) {
 				}
 				bricks = $.merge(bricks, currentBlock.bricks);
 				currentBlock = null;
+				checkFullines();
 			};
-
-			// check for full lines
-			var linesCount = 0,
-				lines = {},
-				fulllines = [],
-				ys = [];
-			$.each(bricks, function(i, v) {
-				var x = v.attr('x'),
-					y = v.attr('y');
-				if (!lines[y]) lines[y] = [];
-				lines[y].push(v);
-				if (lines[y].length == 10) {
-					linesCount++;
-					fulllines = $.merge(fulllines, lines[y]);
-					ys.push(y);
-					delete lines[y];
-				}
-			});
-			if (linesCount > 0) {
-				switch (linesCount) {
-				case 1:
-					score += 10;
-					break;
-				case 2:
-					score += 25;
-					break;
-				case 3:
-					score += 40;
-					break;
-				case 4:
-					score += 60;
-					break;
-				default:
-
-					break;
-				};
-				$('#score').html(score);
-
-				clearInterval(gameLoop)
-				var linesToRemove = paper.set()
-				$.each(fulllines, function(i, v) {
-					linesToRemove.push(v);
-				})
-				linesToRemove.animate({
-					opacity: 0,
-					transform: 's0r360'
-				}, 1000, 'bounce', function() {
-					linesToRemove.remove();
-					bricks = [];
-					$.each(lines, function(i, v) {
-						$.merge(bricks, v);
-					});
-					ys.sort(function(a, b) {
-						return (a - b);
-					})
-					var newBricks = [];
-					var oldBricks = [];
-					$.each(ys, function(i, y) {
-						newBricks = [];
-						$.each(bricks, function(ii, brick) {
-							var yy = brick.attr('y');
-							var xx = brick.attr('x');
-							var fill = brick.attr('fill');
-							if (yy < y) {
-								oldBricks.push(brick);
-								newBricks.push(new Brick({
-									x: xx - 1,
-									y: yy - 1 + BrickSide,
-									color: fill
-								}));
-							} else {
-								newBricks.push(brick);
-							}
-						});
-						delete bricks;
-						bricks = $.merge([], newBricks);
-						delete newBricks;
-					});
-					$.each(oldBricks, function(i, o) {
-						o.remove();
-					})
-
-					gameLoop = setInterval(loop, speed)
-				});
-
-			}
+			
 		}
 	var gameLoop = setInterval(loop, speed);
-	/*
 	
-
-			var now = Date.now();
-			var elapsed = (now - lastUpdate);
-			var elapsed2 = (now - last);
-			if (elapsed >= 60000) {
-				lastUpdate = now;
-				speed -= 50;
-			}
-			if (elapsed2 >= speed) {
-				last = now;
-				block.y += BrickSide;
-				block.draw();
-			}
-
-
-			var collision = false;
-			if (blocks.length > 0) $.each(blocks, function(i, b) {
-				$.each(b.bricks, function(i, br) {
-					$.each(block.bricks, function(i, me) {
-						var bb1 = br.getBBox();
-						var bb2 = me.getBBox();
-						//if (Raphael.isBBoxIntersect(me.getBBox(true), br.getBBox(true))) {
-						if (br.attr('opacity') != 0) if (bb1.x == bb2.x && bb1.y == bb2.y2) {
-							collision = true;
-						}
-					})
-				})
-			});
-			if (block.bricks.getBBox(false).y2 >= height - 10) collision = true;
-			if (!collision) {
-				handler();
-				block.draw();
-				$.each(blocks, function(i, b) {
-					$.each(b.bricks, function(i, br) {
-						$.each(block.bricks, function(i, me) {
-							var bb1 = br.getBBox();
-							var bb2 = me.getBBox();
-							if (br.attr('opacity') != 0) {
-								if (bb1.x == bb2.x && bb1.y == bb2.y2) {
-									collision = true;
-								}
-								if (bb2.x <= 0 - BrickSide + 1 || bb2.x2 >= width + BrickSide - 1) {
-									collision = true;
-								}
-							}
-						})
-					})
-				});
-				if (blocks.length == 0) {
-					$.each(block.bricks, function(i, me) {
-						var bb2 = me.getBBox();
-						if (bb2.x <= 0 - BrickSide + 1 || bb2.x2 >= width + BrickSide - 1) {
-							collision = true;
-						}
-					})
-				}
-				if (block.bricks.getBBox(false).y2 >= height - 10) collision = true;
-				if (collision) {
-					if (EVENTS.ROTATE) {
-						block.angle -= 90;
-					}
-					if (EVENTS.LEFT) {
-						block.x += BrickSide;
-					}
-					if (EVENTS.RIGHT) {
-						block.x -= BrickSide;
-					}
-					if (EVENTS.DOWN) {
-						block.y -= BrickSide;
-					}
-					block.draw();
-				}
-				EVENTS = {};
-			} else {
-				blocks.push(block);
-				// check for full lines
-				for (var y = 10; y < height; y = y + 20) {
-					var line = true;
-					for (var x = 10; x < width; x = x + 20) {
-						var yep = false;
-						$.each(blocks, function(i, b) {
-							$.each(b.bricks, function(i, br) {
-								var bb = br.getBBox();
-								if (br.attr('opacity') != 0) if (bb.x < x && bb.x2 > x && bb.y < y && bb.y2 > y) {
-									yep = true;
-								}
-							});
-						});
-						if (!yep) {
-							line = false;
-							break;
-						}
-					}
-					if (line) {
-						for (var x = 10; x < width; x = x + 20) {
-							var yep = false;
-							$.each(blocks, function(i, b) {
-								$.each(b.bricks, function(i, br) {
-									var bb = br.getBBox();
-									if (bb.x < x && bb.x2 > x && bb.y < y && bb.y2 > y) {
-										br.attr({
-											opacity: 0
-										});
-									}
-								});
-							});
-						}
-						for (var yy = y - 20; yy > 0; yy = yy - 20) {
-							for (var x = 10; x < width; x = x + 20) {
-								$.each(blocks, function(i, b) {
-									$.each(b.bricks, function(i, br) {
-										var bb = br.getBBox();
-										if (bb.x < x && bb.x2 > x && bb.y < yy && bb.y2 > yy) {
-											br.transform("...T0," + BrickSide);
-										}
-									});
-								});
-							}
-						}
-					}
-				}
-				$.each(blocks, function(i, b) {
-					$.each(b.bricks, function(i, br) {
-						var bb = br.getBBox();
-						if (br.attr('opacity') != 0) if (bb.y < 0) {
-							clearInterval(gameLoop);
-							alert('game over!');
-						}
-					});
-				});
-				block = new Block();
-			}
-
-		}
-
-	var KEYS = {
-		W: 87,
-		A: 65,
-		S: 83,
-		D: 68,
-		LEFT: 37,
-		UP: 38,
-		RIGHT: 39,
-		DOWN: 40
-	};
-	$(window).bind('keydown', function(e) {
-		switch (e.which) {
-		case KEYS.W:
-		case KEYS.UP:
-			EVENTS.ROTATE = true
-			break;
-		case KEYS.A:
-		case KEYS.LEFT:
-			EVENTS.LEFT = true;
-			break;
-		case KEYS.S:
-		case KEYS.DOWN:
-			EVENTS.DOWN = true;
-			break;
-		case KEYS.D:
-		case KEYS.RIGHT:
-			EVENTS.RIGHT = true;
-			break;
-		default:
-
-			break;
-		};
-
-	});
-	$('#content').hammer({
-		prevent_default: true,
-		drag_vertical: false,
-		swipe_time: 800,
-		// ms
-		swipe_min_distance: 5 // pixels
-	}).bind("tap swipe", function(ev) {
-		if (ev.type == 'swipe') {
-			EVENTS.LEFT = ev.direction == 'left';
-			EVENTS.RIGHT = ev.direction == 'right';
-			EVENTS.ROTATE = ev.direction == 'up';
-			EVENTS.DOWN = ev.direction == 'down';
-		}
-		if (ev.type == 'tap') {
-			EVENTS.ROTATE = true
-		}
-
-	});
-
-	function handler() {
-
-		if (EVENTS.ROTATE) {
-			block.angle += 90;
-		}
-		if (EVENTS.LEFT) {
-			block.x -= BrickSide;
-		}
-		if (EVENTS.DOWN) {
-			block.y += BrickSide;
-		}
-		if (EVENTS.RIGHT) {
-			block.x += BrickSide;
-		}
-	}
-	
-
-	/**/
 	
